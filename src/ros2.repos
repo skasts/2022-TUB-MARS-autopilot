@@ -1,0 +1,12 @@
+# List of repositories to use within your workspace
+# See https://github.com/dirk-thomas/vcstool
+############ 
+# Example:
+############
+# Info: This is used to pull repositories in a convenient way. Switch into this folder and execute
+# 'vcs import < ros2.repos' to clone all listed repositories into the folder.
+repositories:
+  # examples:
+  #   type: git
+  #   url: https://github.com/ros2/examples.git
+  #   version: foxy
