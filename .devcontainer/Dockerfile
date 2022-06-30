@@ -25,6 +25,8 @@ RUN apt-get update \
    ros-foxy-xacro \
    # Requirements for Jackal Robot model
    ros-foxy-velodyne-description \
+   # Requirements for Slam Toolbox
+   python3-rospkg \
    # Clean up
    && apt-get autoremove -y \
    && apt-get clean -y \

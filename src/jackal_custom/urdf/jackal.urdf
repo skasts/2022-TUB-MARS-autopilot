@@ -19,7 +19,7 @@
     <visual>
       <origin rpy="1.57079632679 0 1.57079632679" xyz="0 0 -0.0655" />
       <geometry>
-        <mesh filename="package://jackal_description/meshes/jackal-base.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/jackal-base.stl" />
       </geometry>
       <material name="dark_grey" />
     </visual>
@@ -46,7 +46,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-        <mesh filename="package://jackal_description/meshes/jackal-wheel.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/jackal-wheel.stl" />
       </geometry>
       <material name="black" />
     </visual>
@@ -72,7 +72,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-        <mesh filename="package://jackal_description/meshes/jackal-wheel.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/jackal-wheel.stl" />
       </geometry>
       <material name="black" />
     </visual>
@@ -98,7 +98,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-        <mesh filename="package://jackal_description/meshes/jackal-wheel.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/jackal-wheel.stl" />
       </geometry>
       <material name="black" />
     </visual>
@@ -124,7 +124,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-        <mesh filename="package://jackal_description/meshes/jackal-wheel.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/jackal-wheel.stl" />
       </geometry>
       <material name="black" />
     </visual>
@@ -149,13 +149,13 @@
   <link name="front_fender_link">
     <visual>
       <geometry>
-        <mesh filename="package://jackal_description/meshes/jackal-fender.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/jackal-fender.stl" />
       </geometry>
       <material name="yellow" />
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://jackal_description/meshes/jackal-fender.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/jackal-fender.stl" />
       </geometry>
     </collision>
   </link>
@@ -167,13 +167,13 @@
   <link name="rear_fender_link">
     <visual>
       <geometry>
-        <mesh filename="package://jackal_description/meshes/jackal-fender.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/jackal-fender.stl" />
       </geometry>
       <material name="yellow" />
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://jackal_description/meshes/jackal-fender.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/jackal-fender.stl" />
       </geometry>
     </collision>
   </link>
@@ -184,7 +184,7 @@
   </joint>
   <link name="imu_link">
     <inertial>
-      <mass value="0.001" />
+      <mass value="0.010" />
       <origin rpy="0 0 0" xyz="0 0 0" />
       <inertia ixx="1e-09" ixy="0.0" ixz="0.0" iyy="1e-09" iyz="0.0" izz="1e-09" />
     </inertial>
@@ -287,7 +287,7 @@
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
         <!-- Origin of this mesh is the focal point of the LIDAR. -->
-        <mesh filename="package://jackal_description/meshes/sick-lms1xx.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/sick-lms1xx.stl" />
       </geometry>
       <material name="light_grey">
         <color rgba="0.8 0.8 0.8 0.8" />
@@ -305,7 +305,7 @@
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
         <!-- Origin of this mesh is the base of the bracket. -->
-        <mesh filename="package://jackal_description/meshes/sick-lms1xx-bracket.stl" />
+        <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/jackal_custom/meshes/sick-lms1xx-bracket.stl" />
       </geometry>
       <material name="dark_grey" />
     </visual>
