@@ -1,5 +1,6 @@
 # FROM althack/ros2:foxy-dev 
-FROM althack/ros2:foxy-gazebo-nvidia AS althack
+FROM althack/ros2:foxy-gazebo AS althack # Default
+# FROM althack/ros2:foxy-gazebo-nvidia AS althack # If you have a nvidia GPU with Cuda installed
 
 # Install additional packages
 ENV DEBIAN_FRONTEND=noninteractive
