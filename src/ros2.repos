@@ -6,7 +6,15 @@
 # Info: This is used to pull repositories in a convenient way. Switch into this folder and execute
 # 'vcs import < ros2.repos' to clone all listed repositories into the folder.
 repositories:
-  # examples:
-  #   type: git
-  #   url: https://github.com/ros2/examples.git
-  #   version: foxy
+  navigation2:
+    type: git
+    url: https://github.com/ros-planning/navigation2.git
+    version: foxy-devel
+  virtual_maize_field:
+    type: git
+    url: https://github.com/FieldRobotEvent/virtual_maize_field.git
+    version: ros2
+  slam_toolbox:
+    type: git
+    url: https://github.com/SteveMacenski/slam_toolbox.git
+    version: foxy-devel
