@@ -68,6 +68,13 @@ This starts RViz with a preconfigured view.
 rviz2 -d src/autopilot/config/default_view.rviz
 ```
 
+#### Run ORB-Slam3 (example, standalone)
+Preparation: Change line 83 in `Examples/Monocular/mono_euroc.cc` to `ORB_SLAM3::System SLAM(argv[1],argv[2],ORB_SLAM3::System::MONOCULAR, true);` (was false before). This activates the viewers. Also, the example requires the EuRoC dataset (V101) to be extracted into `/workspaces/2022-TUB-MARS-autopilot/`.
+```
+cd /ORB_SLAM3
+./Examples/Monocular/mono_euroc Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml ../workspaces/2022-TUB-MARS-autopilot/ Examples/Monocular/EuRoC_TimeStamps/V101.txt 
+```
+
 ## Debug information
 
 #### Other useful commands
