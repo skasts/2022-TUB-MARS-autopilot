@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mars_robot">
-<!-- <xacro:include filename="mars_robot.gazebo" /> -->
+<xacro:include filename="mars_robot.gazebo" /> 
 
 <!-- This first link, "world" is empty-->
 <link name="mars_robot_footprint"></link>        
@@ -35,6 +35,7 @@
 
 <!-- Fixed joint from "world" to "base"-->
 <joint name="base_joint" type="fixed">
+        <preserveFixedJoint>true</preserveFixedJoint>
         <origin xyz="0 0 0" rpy="0 0 0"/>    
         <parent link="mars_robot_footprint"/>
         <child link="robot_base_link"/>            
@@ -68,6 +69,7 @@
 </link>
 
 <joint name="front_left_wheel_joint" type="continuous">
+        <preserveFixedJoint>true</preserveFixedJoint>
         <parent link="robot_base_link"/>
         <child link="front_left_wheel_link"/>
         <origin rpy="0 0 0" xyz="0.13675 0.141 0"/>
@@ -103,6 +105,7 @@
 </link>
  
 <joint name="front_right_wheel_joint" type="continuous">
+        <preserveFixedJoint>true</preserveFixedJoint>
         <parent link="robot_base_link"/>
         <child link="front_right_wheel_link"/>
         <origin rpy="0 0 0" xyz="0.13675 -0.141 0"/>
@@ -137,6 +140,7 @@
 </link>
 
 <joint name="rear_left_wheel_joint" type="continuous">
+        <preserveFixedJoint>true</preserveFixedJoint>
         <parent link="robot_base_link"/>
         <child link="rear_left_wheel_link"/>
         <origin rpy="0 0 0" xyz="-0.05425 0.141 0"/>
@@ -172,6 +176,7 @@
 </link>
 
 <joint name="rear_right_wheel_joint" type="continuous">
+        <preserveFixedJoint>true</preserveFixedJoint>
         <parent link="robot_base_link"/>
         <child link="rear_right_wheel_link"/>
         <origin rpy="0 0 0" xyz="-0.05425 -0.141 0"/>
@@ -188,6 +193,7 @@
 </link>
  
 <joint name="imu_joint" type="fixed">
+        <preserveFixedJoint>true</preserveFixedJoint>
         <parent link="robot_base_link" />
         <child link="imu_link" />
         <origin rpy="0 0 0" xyz="0.0495 0.01 0.0665" />
@@ -206,6 +212,7 @@
 </link>
  
 <joint name="camera_joint" type="fixed">
+        <preserveFixedJoint>true</preserveFixedJoint>
         <origin rpy="0 0 0" xyz="0.0 0 0.2045" />
         <parent link="robot_base_link" />
         <child link="camera_link" />
@@ -214,6 +221,7 @@
 <!-- generate an optical frame http://www.ros.org/reps/rep-0103.html#suffix-frames
       so that ros and opencv can operate on the camera frame correctly -->
 <joint name="camera_optical_joint" type="fixed">
+        <preserveFixedJoint>true</preserveFixedJoint>
         <!-- these values have to be these values otherwise the gazebo camera image
         won't be aligned properly with the frame it is supposedly originating from -->
         <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
