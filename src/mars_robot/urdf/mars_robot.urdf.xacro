@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mars_robot">
+<!-- <xacro:include filename="mars_robot.gazebo" /> -->
+
+<!-- This first link, "world" is empty-->
+<link name="mars_robot_footprint"></link>        
+
+<link name="robot_base_link">
+        <visual>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                        <!-- <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/mars_robot/meshes/Robot_base.stl"
+                        scale="0.001 0.001 0.001"/>            -->
+                        <box size="0.1 0.1 0.1"/>
+                </geometry>
+                <material name="red">
+                        <color rgba="1.0 0.0 0.0 1.0"/>
+                </material>
+        </visual>
+        <inertial>
+                <mass value="4.42"/>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <inertia 
+                        ixx="0.03295736167" ixy="0.0" ixz="0.0"
+                        iyy="0.05523416167" iyz="0.0"
+                        izz="0.05601318667" />
+        </inertial>
+        <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                        <box size="0.330 0.355 0.300"/>
+                </geometry>
+        </collision>
+</link>
+
+<!-- Fixed joint from "world" to "base"-->
+<joint name="base_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>    
+        <parent link="mars_robot_footprint"/>
+        <child link="robot_base_link"/>            
+</joint>
+
+<link name="front_left_wheel_link">
+        <visual>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                        <!-- <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/mars_robot/meshes/Wheel_one.stl" 
+                        scale="0.001 0.001 0.001"/> -->
+                        <box size="0.128 0.084 0.061" /> 
+                </geometry>
+                <material name="color_wheel">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+                </material>
+        </visual>
+        <collision>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                        <cylinder length="0.07" radius="0.125" />
+                </geometry>
+        </collision>
+        <inertial>
+        <mass value="0.176"/>
+        <inertia ixx="2.87466667e-04" ixy="0.0" ixz="0.0"
+                        iyy="2.87466667e-04" iyz="0.0"
+                        izz="3.0184e-05" />
+
+        </inertial>
+</link>
+
+<joint name="front_left_wheel_joint" type="continuous">
+        <parent link="robot_base_link"/>
+        <child link="front_left_wheel_link"/>
+        <origin rpy="0 0 0" xyz="0.13675 0.141 0"/>
+        <implicitSpringDamper>1</implicitSpringDamper>
+</joint>
+
+
+<link name="front_right_wheel_link">
+        <visual>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                        <!-- <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/mars_robot/meshes/Wheel_two.stl" 
+                        scale="0.001 0.001 0.001"/> -->
+                        <box size="0.128 0.084 0.061" /> 
+                </geometry>
+                <material name="color_wheel">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+                </material>
+        </visual>
+        <collision>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                        <cylinder length="0.07" radius="0.125" />
+                </geometry>
+        </collision>
+        <inertial>
+        <mass value="0.176"/>
+        <inertia ixx="2.87466667e-04" ixy="0.0" ixz="0.0"
+                        iyy="2.87466667e-04" iyz="0.0"
+                        izz="3.0184e-05" />
+
+        </inertial>
+</link>
+ 
+<joint name="front_right_wheel_joint" type="continuous">
+        <parent link="robot_base_link"/>
+        <child link="front_right_wheel_link"/>
+        <origin rpy="0 0 0" xyz="0.13675 -0.141 0"/>
+        <implicitSpringDamper>1</implicitSpringDamper>
+</joint>
+
+<link name="rear_left_wheel_link">
+        <visual>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                        <!-- <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/mars_robot/meshes/Wheel_three.stl" 
+                        scale="0.001 0.001 0.001"/> -->
+                        <box size="0.128 0.084 0.061" /> 
+                </geometry>
+                <material name="color_wheel">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+                </material>
+        </visual>
+        <collision>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                        <geometry>
+                        <cylinder length="0.07" radius="0.125" />
+                </geometry>
+        </collision>
+        <inertial>
+        <mass value="0.176"/>
+        <inertia ixx="2.87466667e-04" ixy="0.0" ixz="0.0"
+                        iyy="2.87466667e-04" iyz="0.0"
+                        izz="3.0184e-05" />
+
+        </inertial>
+</link>
+
+<joint name="rear_left_wheel_joint" type="continuous">
+        <parent link="robot_base_link"/>
+        <child link="rear_left_wheel_link"/>
+        <origin rpy="0 0 0" xyz="-0.05425 0.141 0"/>
+        <implicitSpringDamper>1</implicitSpringDamper>
+</joint>
+
+
+ <link name="rear_right_wheel_link">
+        <visual>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                        <!-- <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/mars_robot/meshes/Wheel_four.stl" 
+                        scale="0.001 0.001 0.001"/> -->
+                        <box size="0.128 0.084 0.061" /> 
+                </geometry>
+                <material name="color_wheel">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+                </material>
+        </visual>
+        <collision>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                        <cylinder length="0.07" radius="0.125" />
+                </geometry>
+        </collision>
+        <inertial>
+        <mass value="0.176"/>
+        <inertia ixx="2.87466667e-04" ixy="0.0" ixz="0.0"
+                        iyy="2.87466667e-04" iyz="0.0"
+                        izz="3.0184e-05" />
+
+        </inertial>
+</link>
+
+<joint name="rear_right_wheel_joint" type="continuous">
+        <parent link="robot_base_link"/>
+        <child link="rear_right_wheel_link"/>
+        <origin rpy="0 0 0" xyz="-0.05425 -0.141 0"/>
+        <implicitSpringDamper>1</implicitSpringDamper>
+</joint>
+
+<!--IMU-->
+<link name="imu_link">
+        <inertial>
+                <mass value="0.010" />
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <inertia ixx="1e-09" ixy="0.0" ixz="0.0" iyy="1e-09" iyz="0.0" izz="1e-09" />
+        </inertial>
+</link>
+ 
+<joint name="imu_joint" type="fixed">
+        <parent link="robot_base_link" />
+        <child link="imu_link" />
+        <origin rpy="0 0 0" xyz="0.0495 0.01 0.0665" />
+</joint>
+
+ <!--CAMERA-->
+<link name="camera_link">
+        <visual>
+                <geometry>
+                        <box size="0.128 0.084 0.061" /> 
+                </geometry>
+                <material name="color_cam">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+                </material>
+        </visual>
+</link>
+ 
+<joint name="camera_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0.0 0 0.2045" />
+        <parent link="robot_base_link" />
+        <child link="camera_link" />
+</joint>
+
+<!-- generate an optical frame http://www.ros.org/reps/rep-0103.html#suffix-frames
+      so that ros and opencv can operate on the camera frame correctly -->
+<joint name="camera_optical_joint" type="fixed">
+        <!-- these values have to be these values otherwise the gazebo camera image
+        won't be aligned properly with the frame it is supposedly originating from -->
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+        <parent link="camera_link"/>
+        <child link="camera_link_optical"/>
+</joint>
+
+<link name="camera_link_optical"></link>
+
+</robot>
