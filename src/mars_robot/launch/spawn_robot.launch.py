@@ -30,7 +30,7 @@ def generate_launch_description():
         output='screen',
         # remappings = [('/rp_lidar/out', '/scan')],
         arguments=['-entity', name, '-x', x, '-y', y, '-z', z, '-Y', yaw,
-                   '-file', mars_robot_dir + '/models/model.sdf']
+                   '-file', mars_robot_dir + '/urdf/mars_robot.sdf']
     )
 
     ld.add_action(declare_name_cmd)
