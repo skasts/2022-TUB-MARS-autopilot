@@ -2,23 +2,31 @@
 <sdf version='1.7'>
   <model name='mars_robot'>
     <pose>0 0 0.5 0 0 0</pose>
-    <link name='mars_robot_footprint' />
 
+    <link name='mars_robot_footprint'></link>
     <link name='robot_base_link'>
       <visual name='robot_base_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose> 0 0 0 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.1 0.1 0.1</size>
+            <size>0.33 0.355 0.3</size>
           </box>
         </geometry>
         <material>
           <script>
             <name>Gazebo/Red</name>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <uri>file://media/materials/scripts/gazebo.material</uri> 
           </script>
         </material>
       </visual>
+      <collision name='robot_base_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.33 0.355 0.3</size>
+          </box>
+        </geometry>
+      </collision>
       <inertial>
         <pose>0.000112 2.3e-05 0.00015 0 -0 0</pose>
         <mass>4.43</mass>
@@ -31,25 +39,16 @@
           <izz>0.0560386</izz>
         </inertia>
       </inertial>
-      <collision name='robot_base_link_collision'>
-        <pose>0 0 0 0 -0 0</pose>
-        <geometry>
-          <box>
-            <size>0.33 0.355 0.3</size>
-          </box>
-        </geometry>
-      </collision>
     </link>
-
+    
     <joint name="base_joint" type="fixed">   
-        <parent link="mars_robot_footprint"/>
-        <child link="robot_base_link"/>            
+      <parent>mars_robot_footprint</parent>
+      <child>robot_base_link</child>            
     </joint>
-
-    <!--CAMERA-->
-    <link name= "camera_link">
+    
+    <link name='camera_link'>
+      <pose> 0 0 0.2045 0 0 0</pose>
       <visual name='camera_link_visual'>
-        <pose relative_to='camera_joint'> 0 0 0.2045 0 -0 0 />
         <geometry>
           <box>
             <size>0.128 0.084 0.061</size>
@@ -58,130 +57,146 @@
         <material>
           <script>
             <name>Gazebo/Orange</name>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
+              <uri>file://media/materials/scripts/gazebo.material</uri> 
           </script>
         </material>
       </visual>
-      <sensor name='camera' type='camera'>
-        <update_rate>30</update_rate>
-        <camera name='head'>
-          <horizontal_fov>1.39626</horizontal_fov>
+      <sensor name="camera" type="camera">
+        <pose>0 0 0 0 1.57079632679 3.14159265359</pose>
+        <camera>
+          <horizontal_fov>1.047</horizontal_fov>
           <image>
-            <width>800</width>
-            <height>800</height>
-            <format>R8G8B8</format>
+            <width>1280</width>
+            <height>720</height>
           </image>
           <clip>
-            <near>0.02</near>
-            <far>300</far>
+            <near>0.1</near>
+            <far>100</far>
           </clip>
-          <noise>
-            <type>gaussian</type>
-            <mean>0</mean>
-            <stddev>0.007</stddev>
-          </noise>
         </camera>
-        <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
-          <alwaysOn>1</alwaysOn>
-          <updateRate>30.0</updateRate>
-          <cameraName>mars_robot/camera</cameraName>
-          <imageTopicName>image_raw</imageTopicName>
-          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-          <frameName>camera_link_optical</frameName>
-          <hackBaseline>0.0</hackBaseline>
-          <distortionK1>0.0</distortionK1>
-          <distortionK2>0.0</distortionK2>
-          <distortionK3>0.0</distortionK3>
-          <distortionT1>0.0</distortionT1>
-          <distortionT2>0.0</distortionT2>
-          <CxPrime>0</CxPrime>
-          <Cx>0.0</Cx>
-          <Cy>0.0</Cy>
-          <focalLength>0.0</focalLength>
-        </plugin>
-        <pose>0 0 0.2045 0 -0 0</pose>
-      </sensor>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>false</visualize>
+        <plugin name="camera_driver" filename="libgazebo_ros_camera.so" />
+      </sensor>      
     </link>
 
     <link name="camera_link_optical"></link>
 
     <joint name="camera_joint" type="fixed">
-          <origin rpy="0 0 0" xyz="0.0 0 0.2045" />
-          <parent link="robot_base_link" />
-          <child link="camera_link" />
+          <origin rpy="0 0 0" xyz="0.0 0 0.2045"></origin>
+          <parent>robot_base_link</parent>
+          <child>camera_link</child>
     </joint>
 
-    <!-- generate an optical frame http://www.ros.org/reps/rep-0103.html#suffix-frames
-      so that ros and opencv can operate on the camera frame correctly -->
     <joint name="camera_optical_joint" type="fixed">
           <!-- these values have to be these values otherwise the gazebo camera image
-          won't be aligned properly with the frame it is supposedly originating from -->
-          <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
-          <parent link="camera_link"/>
-          <child link="camera_link_optical"/>
+          won't be aligned properly with the frame it is supposedly originating from  -->
+          <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"></origin>
+          <parent>camera_link</parent>
+          <child>camera_link_optical</child>
     </joint>
 
     <link name="imu_link">
-        <inertial>
-          <mass value="0.010" />
-          <origin rpy="0 0 0" xyz="0 0 0" />
-          <inertia ixx="1e-09" ixy="0.0" ixz="0.0" iyy="1e-09" iyz="0.0" izz="1e-09" />
-        </inertial>
-        <gravity>1</gravity>
-        <sensor name='imu_sensor' type='imu'>
-          <always_on>1</always_on>
-          <update_rate>100</update_rate>
-          <visualize>1</visualize>
-          <topic>__default_topic__</topic>
-          <plugin name='imu_plugin' filename='libgazebo_ros_imu_sensor.so'>
-            <topicName>imu</topicName>
-            <bodyName>imu_link</bodyName>
-            <updateRateHZ>10.0</updateRateHZ>
-            <gaussianNoise>0.0</gaussianNoise>
-            <xyzOffset>0 0 0</xyzOffset>
-            <rpyOffset>0 0 0</rpyOffset>
-            <frameName>imu_link</frameName>
-            <initialOrientationAsReference>0</initialOrientationAsReference>
-          </plugin>
-          <pose>0.0495 0.01 0.0665 0 -0 0</pose>
-        </sensor>
+      <inertial>
+        <mass>0.001</mass>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>1e-09</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>1e-09</iyy>
+          <iyz>0.0</iyz>
+          <izz>1e-09</izz>
+        </inertia>
+      </inertial>
+      <sensor name="imu" type="imu">
+        <always_on>true</always_on>
+        <update_rate>250</update_rate>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-5</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-5</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-5</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-3</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-3</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-3</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+        <plugin name="mars_robot_imu" filename="libgazebo_ros_imu_sensor.so">
+          <ros>
+            <remapping>~/out:=imu</remapping>
+          </ros>
+        </plugin>
+      </sensor>
     </link>
 
-    <joint name="imu_joint">
-      <parent link="robot_base_link" />
-          <child link="imu_link" />
-          <origin rpy="0 0 0" xyz="0.0495 0.01 0.0665" />
+    <joint name="imu_joint" type="fixed">
+      <parent>robot_base_link</parent>
+      <child>imu_link</child>
+      <origin xyz="0.0495 0.01 0.0665" rpy="0 0 0"></origin>
     </joint>
-
+    <!-- WHEELS -->
     <joint name='front_left_wheel_joint' type='revolute'>
-        <pose relative_to='robot_base_link'>0.13675 0.141 0 0 -0 0</pose>
-        <parent>robot_base_link</parent>
-        <child>front_left_wheel_link</child>
-        <axis>
-          <xyz>0 0 -1</xyz>
-          <use_parent_model_frame>true</use_parent_model_frame>
-          <limit>
-            <lower>-1e+16</lower>
-            <upper>1e+16</upper>
-          </limit>
-          <dynamics>
-            <spring_reference>0</spring_reference>
-            <spring_stiffness>0</spring_stiffness>
-          </dynamics>
-        </axis>
-        <physics>
-        <ode>
-            <limit>
-              <cfm>0.000000</cfm>
-              <erp>0.900000</erp>
-            </limit>
-          </ode>
-        </physics>
+            <pose relative_to='robot_base_link'>0.13675 0.141 0 0 0 0</pose>
+            <parent>robot_base_link</parent>
+            <child>front_left_wheel_link</child>
+            <axis>
+              <xyz> 0 0 -1</xyz>
+              <use_parent_model_frame>true</use_parent_model_frame>
+              <limit>
+                <lower>-1e+16</lower>
+                <upper>1e+16</upper>
+              </limit>
+              <dynamics>
+                <spring_reference>0</spring_reference>
+                <spring_stiffness>0</spring_stiffness>
+              </dynamics>
+            </axis>
+            <physics>
+            <ode>
+                <limit>
+                  <cfm>0.000000</cfm>
+                  <erp>0.900000</erp>
+                </limit>
+              </ode>
+            </physics>
     </joint>
 
-  <!--WHEELS-->
     <link name='front_left_wheel_link'>
-      <pose relative_to='front_left_wheel_joint'>0 0 0 0 -0 0</pose>
+      <pose relative_to='front_left_wheel_joint'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 -0 0</pose>
         <mass>0.176</mass>
@@ -213,7 +228,7 @@
         </surface>
       </collision>
       <visual name='front_left_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
             <length>0.07</length>
@@ -223,14 +238,13 @@
         <material>
           <script>
             <name>Gazebo/Black</name>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
           </script>
         </material>
       </visual>
-    </link>
+    </link>     
 
     <joint name='front_right_wheel_joint' type='revolute'>
-      <pose relative_to='robot_base_link'>0.13675 -0.141 0 0 -0 0</pose>
+      <pose relative_to='robot_base_link'>0.13675 -0.141 0 0 0 0</pose>
       <parent>robot_base_link</parent>
       <child>front_right_wheel_link</child>
       <axis>
@@ -246,7 +260,7 @@
           </dynamics>
         </axis>
         <physics>
-        <ode>
+          <ode>
             <limit>
               <cfm>0.000000</cfm>
               <erp>0.900000</erp>
@@ -258,7 +272,7 @@
     <link name='front_right_wheel_link'>
       <pose relative_to='front_right_wheel_joint'>0 0 0 0 -0 0</pose>
       <inertial>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <mass>0.176</mass>
         <inertia>
           <ixx>0.000287467</ixx>
@@ -270,7 +284,7 @@
         </inertia>
       </inertial>
       <collision name='front_right_wheel_link_collision'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
             <length>0.07</length>
@@ -278,9 +292,6 @@
           </cylinder>
         </geometry>
         <surface>
-          <contact>
-            <ode/>
-          </contact>
           <friction>
             <ode>
               <mu>2</mu>
@@ -292,7 +303,7 @@
         </surface>
       </collision>
       <visual name='front_right_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
             <length>0.07</length>
@@ -302,14 +313,14 @@
         <material>
           <script>
             <name>Gazebo/Black</name>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <uri>file://media/materials/scripts/gazebo.material</uri> 
           </script>
         </material>
       </visual>
     </link>
 
     <joint name='rear_left_wheel_joint' type='revolute'>
-      <pose relative_to='mars_robot_footprint'>-0.05425 0.141 0 0 -0 0</pose>
+      <pose relative_to='mars_robot_footprint'>-0.05425 0.141 0 0 0 0</pose>
       <parent>mars_robot_footprint</parent>
       <child>rear_left_wheel_link</child>
       <axis>
@@ -323,21 +334,21 @@
             <spring_reference>0</spring_reference>
             <spring_stiffness>0</spring_stiffness>
           </dynamics>
-        </axis>
-        <physics>
+      </axis>
+      <physics>
         <ode>
-            <limit>
-              <cfm>0.000000</cfm>
-              <erp>0.900000</erp>
-            </limit>
-          </ode>
-        </physics>
+          <limit>
+            <cfm>0.000000</cfm>
+            <erp>0.900000</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
 
     <link name='rear_left_wheel_link'>
-      <pose relative_to='rear_left_wheel_joint'>0 0 0 0 -0 0</pose>
+      <pose relative_to='rear_left_wheel_joint'>0 0 0 0 0 0</pose>
       <inertial>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <mass>0.176</mass>
         <inertia>
           <ixx>0.000287467</ixx>
@@ -349,7 +360,7 @@
         </inertia>
       </inertial>
       <collision name='rear_left_wheel_link_collision'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
             <length>0.07</length>
@@ -357,9 +368,6 @@
           </cylinder>
         </geometry>
         <surface>
-          <contact>
-            <ode/>
-          </contact>
           <friction>
             <ode>
               <mu>2</mu>
@@ -371,7 +379,7 @@
         </surface>
       </collision>
       <visual name='rear_left_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
             <length>0.07</length>
@@ -381,14 +389,14 @@
         <material>
           <script>
             <name>Gazebo/Black</name>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <uri>file://media/materials/scripts/gazebo.material</uri> 
           </script>
         </material>
       </visual>
     </link>
 
     <joint name='rear_right_wheel_joint' type='revolute'>
-      <pose relative_to='mars_robot_footprint'>-0.05425 -0.141 0 0 -0 0</pose>
+      <pose relative_to='mars_robot_footprint'>-0.05425 -0.141 0 0 0 0</pose>
       <parent>mars_robot_footprint</parent>
       <child>rear_right_wheel_link</child>
       <axis>
@@ -402,21 +410,21 @@
             <spring_reference>0</spring_reference>
             <spring_stiffness>0</spring_stiffness>
           </dynamics>
-        </axis>
-        <physics>
+      </axis>
+      <physics>
         <ode>
-            <limit>
-              <cfm>0.000000</cfm>
-              <erp>0.900000</erp>
-            </limit>
-          </ode>
-        </physics>
+          <limit>
+            <cfm>0.000000</cfm>
+            <erp>0.900000</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
 
     <link name='rear_right_wheel_link'>
-      <pose relative_to='rear_right_wheel_joint'>0 0 0 0 -0 0</pose>
+      <pose relative_to='rear_right_wheel_joint'>0 0 0 0 0 0</pose>
       <inertial>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <mass>0.176</mass>
         <inertia>
           <ixx>0.000287467</ixx>
@@ -428,7 +436,7 @@
         </inertia>
       </inertial>
       <collision name='rear_right_wheel_link_collision'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
             <length>0.07</length>
@@ -436,9 +444,6 @@
           </cylinder>
         </geometry>
         <surface>
-          <contact>
-            <ode/>
-          </contact>
           <friction>
             <ode>
               <mu>2</mu>
@@ -450,7 +455,7 @@
         </surface>
       </collision>
       <visual name='rear_right_wheel_link_visual'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
             <length>0.07</length>
@@ -460,13 +465,12 @@
         <material>
           <script>
             <name>Gazebo/Black</name>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <uri>file://media/materials/scripts/gazebo.material</uri> 
           </script>
         </material>
       </visual>
     </link>
-
-  <!-- Drive plugin -->
+    <!-- Drive plugin  -->
     <plugin name="mars_robot_drive_plugin" filename="libgazebo_ros_diff_drive.so">
       <update_rate>100.0</update_rate>
       <num_wheel_pairs>2</num_wheel_pairs>
@@ -484,12 +488,13 @@
       <publish_wheel_tf>true</publish_wheel_tf>
       <odometry_frame>odom</odometry_frame>
       <robot_base_frame>mars_robot_footprint</robot_base_frame>
-    </plugin>
+    </plugin> 
 
     <static>0</static>
-    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+    <!-- <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
       <robotNamespace>/mars_robot</robotNamespace>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-    </plugin>
+    </plugin> -->
   </model>
 </sdf>
+
