@@ -48,7 +48,7 @@ set(dependencies
 ################################################################################
 # Install
 ################################################################################
-install(DIRECTORY launch meshes urdf
+install(DIRECTORY launch meshes urdf config
   DESTINATION share/${PROJECT_NAME}/
 )
 

@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mars_robot">
 <xacro:include filename="mars_robot.gazebo" /> 
+<xacro:include filename="mars_robot.ros2_control.xacro" /> 
 
 <!-- This first link, "world" is empty-->
 <link name="mars_robot_footprint"></link>        
