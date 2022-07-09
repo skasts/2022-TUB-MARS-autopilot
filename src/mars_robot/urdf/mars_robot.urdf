@@ -109,6 +109,55 @@
       <pose>0 0 0 0 0 0</pose>
     </sensor>
   </gazebo>
+  <!-- <xacro:include filename="mars_robot.ros2_control.xacro" />  -->
+  <ros2_control name="mars_robot_control" type="system">
+    <hardware>
+      <plugin>test_system</plugin>
+      <!--  <xacro:if value="${use_fake_hardware}">
+          <plugin>fake_components/GenericSystem</plugin>
+          <param name="fake_sensor_commands">${fake_sensor_commands}</param>
+          <param name="state_following_offset">0.0</param>
+        </xacro:if>
+        <xacro:unless value="${use_fake_hardware}">
+          <plugin>ros2_control_demo_hardware/DiffBotSystemHardware</plugin>
+          <param name="example_param_hw_start_duration_sec">2.0</param>
+          <param name="example_param_hw_stop_duration_sec">3.0</param>
+        </xacro:unless> -->
+    </hardware>
+
+    <joint name="front_left_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="front_right_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rear_left_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rear_right_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
   <!-- This first link, "world" is empty-->
   <link name="mars_robot_footprint"/>
   <link name="robot_base_link">

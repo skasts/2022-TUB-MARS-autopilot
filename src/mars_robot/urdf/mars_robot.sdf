@@ -220,8 +220,8 @@
         <surface>
           <friction>
             <ode>
-              <mu>0.2</mu>
-              <mu2>0.2</mu2>
+              <mu>2</mu>
+              <mu2>2</mu2>
               <slip1>0.0</slip1>
               <slip2>0.0</slip2>
             </ode>
@@ -295,8 +295,8 @@
         <surface>
           <friction>
             <ode>
-              <mu>0.2</mu>
-              <mu2>0.2</mu2>
+              <mu>2</mu>
+              <mu2>2</mu2>
               <slip1>0.0</slip1>
               <slip2>0.0</slip2>
             </ode>
@@ -371,8 +371,8 @@
         <surface>
           <friction>
             <ode>
-              <mu>0.2</mu>
-              <mu2>0.2</mu2>
+              <mu>2</mu>
+              <mu2>2</mu2>
               <slip1>0.0</slip1>
               <slip2>0.0</slip2>
             </ode>
@@ -447,8 +447,8 @@
         <surface>
           <friction>
             <ode>
-              <mu>0.2</mu>
-              <mu2>0.2</mu2>
+              <mu>2</mu>
+              <mu2>2</mu2>
               <slip1>0.0</slip1>
               <slip2>0.0</slip2>
             </ode>

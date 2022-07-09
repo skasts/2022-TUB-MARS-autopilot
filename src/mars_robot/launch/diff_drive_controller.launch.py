@@ -11,9 +11,6 @@ def generate_launch_description():
     # Create launch description object
     ld = launch.LaunchDescription()
 
-    use_sim_time = LaunchConfiguration("use_sim_time", default="true")
-    declare_use_sim_time_cmd = DeclareLaunchArgument(name="use_sim_time", default_value="True")
-
     # Get URDF via xacro
     robot_description_content = Command(
         [
@@ -26,13 +23,21 @@ def generate_launch_description():
     )
     robot_description = {"robot_description": robot_description_content}
 
-    # robot_description = {"robot_description": urdf}
-    diffbot_diff_drive_controller = PathJoinSubstitution([FindPackageShare("mars_robot"),"config","diff_drive_controller.yaml",])
-    
+    robot_state_pub_cmd = Node(
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        output="both",
+        parameters=[robot_description],
+    )
+
+    diffbot_diff_drive_controller = os.path.join(get_package_share_directory("mars_robot"),"config/diff_drive_controller.yaml")
     controller_manager_cmd = Node(
         package="controller_manager",
         executable="ros2_control_node",
         parameters=[robot_description, diffbot_diff_drive_controller],
+        remappings=[
+            ("/diffbot_base_controller/cmd_vel_unstamped", "/cmd_vel"),
+        ],
         output={
             "stdout": "screen",
             "stderr": "screen",
@@ -53,11 +58,11 @@ def generate_launch_description():
         output="screen",
     )
     
-    ld.add_action(declare_use_sim_time_cmd)
     ld.add_action(controller_manager_cmd)
-    ld.add_action(spawn_dd_controller)
+    ld.add_action(robot_state_pub_cmd)
     ld.add_action(spawn_jsb_controller)
-
+    ld.add_action(spawn_dd_controller)
+    
     return ld
 
     # TODO: # Get URDF via xacro
