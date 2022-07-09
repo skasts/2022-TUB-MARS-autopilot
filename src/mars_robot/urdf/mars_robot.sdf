@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <sdf version='1.7'>
   <model name='mars_robot'>
-    <pose>0 0 0.5 0 0 0</pose>
+    <pose>0 0 0.0 0 0 0</pose>
 
     <link name='mars_robot_footprint'></link>
     <link name='robot_base_link'>
       <visual name='robot_base_link_visual'>
-        <pose> 0 0 0 0 0 0</pose>
+        <pose> 0 0 0.1115 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.33 0.355 0.3</size>
+            <size>0.326 0.2142 0.175</size>
           </box>
         </geometry>
         <material>
@@ -20,10 +20,10 @@
         </material>
       </visual>
       <collision name='robot_base_link_collision'>
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0 0 0.1115 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.33 0.355 0.3</size>
+            <size>0.326 0.2142 0.300</size>
           </box>
         </geometry>
       </collision>
@@ -41,17 +41,18 @@
       </inertial>
     </link>
     
-    <joint name="base_joint" type="fixed">   
+    <joint name="base_joint" type="fixed">  
+      <origin xyz="0.0 0.0 0.0615"/> 
       <parent>mars_robot_footprint</parent>
       <child>robot_base_link</child>            
     </joint>
     
     <link name='camera_link'>
-      <pose> 0 0 0.2045 0 0 0</pose>
+      <pose> 0.1335 0 0.2045 0 0 0</pose>
       <visual name='camera_link_visual'>
         <geometry>
           <box>
-            <size>0.128 0.084 0.061</size>
+            <size>0.03 0.11 0.035</size> 
           </box>
         </geometry>
         <material>
@@ -84,7 +85,7 @@
     <link name="camera_link_optical"></link>
 
     <joint name="camera_joint" type="fixed">
-          <origin rpy="0 0 0" xyz="0.0 0 0.2045"></origin>
+          <origin rpy="0 0 0" xyz="0.1335 0 0.2045"></origin>
           <parent>robot_base_link</parent>
           <child>camera_link</child>
     </joint>
@@ -170,7 +171,7 @@
     </joint>
     <!-- WHEELS -->
     <joint name='front_left_wheel_joint' type='revolute'>
-            <pose relative_to='robot_base_link'>0.13675 0.141 0 0 0 0</pose>
+            <pose relative_to='robot_base_link'>0.0955 0.141 0 1.5708 0 0</pose>
             <parent>robot_base_link</parent>
             <child>front_left_wheel_link</child>
             <axis>
@@ -212,8 +213,8 @@
       <collision name='front_left_wheel_link_collision'>
         <geometry>
           <cylinder>
-            <length>0.07</length>
-            <radius>0.125</radius>
+            <length>0.0615</length>
+            <radius>0.068</radius>
           </cylinder>
         </geometry>
         <surface>
@@ -231,8 +232,8 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.07</length>
-            <radius>0.125</radius>
+            <length>0.0615</length>
+            <radius>0.068</radius>
           </cylinder>
         </geometry>
         <material>
@@ -244,7 +245,7 @@
     </link>     
 
     <joint name='front_right_wheel_joint' type='revolute'>
-      <pose relative_to='robot_base_link'>0.13675 -0.141 0 0 0 0</pose>
+      <pose relative_to='robot_base_link'>0.0955 -0.141 0 1.5708 0 0</pose>
       <parent>robot_base_link</parent>
       <child>front_right_wheel_link</child>
       <axis>
@@ -270,7 +271,7 @@
     </joint>
 
     <link name='front_right_wheel_link'>
-      <pose relative_to='front_right_wheel_joint'>0 0 0 0 -0 0</pose>
+      <pose relative_to='front_right_wheel_joint'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <mass>0.176</mass>
@@ -287,8 +288,8 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.07</length>
-            <radius>0.125</radius>
+            <length>0.0615</length>
+            <radius>0.068</radius>
           </cylinder>
         </geometry>
         <surface>
@@ -306,8 +307,8 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.07</length>
-            <radius>0.125</radius>
+            <length>0.0615</length>
+            <radius>0.068</radius>
           </cylinder>
         </geometry>
         <material>
@@ -320,8 +321,8 @@
     </link>
 
     <joint name='rear_left_wheel_joint' type='revolute'>
-      <pose relative_to='mars_robot_footprint'>-0.05425 0.141 0 0 0 0</pose>
-      <parent>mars_robot_footprint</parent>
+      <pose relative_to='robot_base_link'>-0.0955 0.141 0 1.5708 0 0</pose>
+      <parent>robot_base_link</parent>
       <child>rear_left_wheel_link</child>
       <axis>
           <xyz>0 0 -1</xyz>
@@ -363,8 +364,8 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.07</length>
-            <radius>0.125</radius>
+            <length>0.0615</length>
+            <radius>0.068</radius>
           </cylinder>
         </geometry>
         <surface>
@@ -382,8 +383,8 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.07</length>
-            <radius>0.125</radius>
+            <length>0.0615</length>
+            <radius>0.068</radius>
           </cylinder>
         </geometry>
         <material>
@@ -396,8 +397,8 @@
     </link>
 
     <joint name='rear_right_wheel_joint' type='revolute'>
-      <pose relative_to='mars_robot_footprint'>-0.05425 -0.141 0 0 0 0</pose>
-      <parent>mars_robot_footprint</parent>
+      <pose relative_to='robot_base_link'>-0.0955 -0.141 0 1.5708 0 0</pose>
+      <parent>robot_base_link</parent>
       <child>rear_right_wheel_link</child>
       <axis>
           <xyz>0 0 -1</xyz>
@@ -439,8 +440,8 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.07</length>
-            <radius>0.125</radius>
+            <length>0.0615</length>
+            <radius>0.068</radius>
           </cylinder>
         </geometry>
         <surface>
@@ -458,8 +459,8 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.07</length>
-            <radius>0.125</radius>
+            <length>0.0615</length>
+            <radius>0.068</radius>
           </cylinder>
         </geometry>
         <material>

@@ -113,11 +113,11 @@
   <link name="mars_robot_footprint"/>
   <link name="robot_base_link">
     <visual>
-      <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0 0 0.1115"/>
       <geometry>
         <!-- <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/mars_robot/meshes/Robot_base.stl"
                         scale="0.001 0.001 0.001"/>            -->
-        <box size="0.1 0.1 0.1"/>
+        <box size="0.326 0.2142 0.175"/>
       </geometry>
       <material name="red">
         <color rgba="1.0 0.0 0.0 1.0"/>
@@ -129,16 +129,16 @@
       <inertia ixx="0.03295736167" ixy="0.0" ixz="0.0" iyy="0.05523416167" iyz="0.0" izz="0.05601318667"/>
     </inertial>
     <collision>
-      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.1115"/>
       <geometry>
-        <box size="0.330 0.355 0.300"/>
+        <box size="0.326 0.2142 0.300"/>
       </geometry>
     </collision>
   </link>
   <!-- Fixed joint from "world" to "base"-->
   <joint name="base_joint" type="fixed">
     <preserveFixedJoint>true</preserveFixedJoint>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0.0 0 0.0615"/>
     <parent link="mars_robot_footprint"/>
     <child link="robot_base_link"/>
   </joint>
@@ -148,7 +148,7 @@
       <geometry>
         <!-- <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/mars_robot/meshes/Wheel_one.stl" 
                         scale="0.001 0.001 0.001"/> -->
-        <box size="0.128 0.084 0.061"/>
+        <cylinder length="0.068" radius="0.0615"/>
       </geometry>
       <material name="color_wheel">
         <color rgba="0.0 0.0 0.0 1.0"/>
@@ -157,7 +157,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.07" radius="0.125"/>
+        <cylinder length="0.068" radius="0.0615"/>
       </geometry>
     </collision>
     <inertial>
@@ -169,7 +169,7 @@
     <preserveFixedJoint>true</preserveFixedJoint>
     <parent link="robot_base_link"/>
     <child link="front_left_wheel_link"/>
-    <origin rpy="0 0 0" xyz="0.13675 0.141 0"/>
+    <origin rpy="1.5708 0 0" xyz="0.0955 0.141 0"/>
     <implicitSpringDamper>1</implicitSpringDamper>
   </joint>
   <link name="front_right_wheel_link">
@@ -178,7 +178,7 @@
       <geometry>
         <!-- <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/mars_robot/meshes/Wheel_two.stl" 
                         scale="0.001 0.001 0.001"/> -->
-        <box size="0.128 0.084 0.061"/>
+        <cylinder length="0.068" radius="0.0615"/>
       </geometry>
       <material name="color_wheel">
         <color rgba="0.0 0.0 0.0 1.0"/>
@@ -187,7 +187,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.07" radius="0.125"/>
+        <cylinder length="0.068" radius="0.0615"/>
       </geometry>
     </collision>
     <inertial>
@@ -199,7 +199,7 @@
     <preserveFixedJoint>true</preserveFixedJoint>
     <parent link="robot_base_link"/>
     <child link="front_right_wheel_link"/>
-    <origin rpy="0 0 0" xyz="0.13675 -0.141 0"/>
+    <origin rpy="1.5708 0 0" xyz="0.0955 -0.141 0"/>
     <implicitSpringDamper>1</implicitSpringDamper>
   </joint>
   <link name="rear_left_wheel_link">
@@ -208,7 +208,7 @@
       <geometry>
         <!-- <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/mars_robot/meshes/Wheel_three.stl" 
                         scale="0.001 0.001 0.001"/> -->
-        <box size="0.128 0.084 0.061"/>
+        <cylinder length="0.068" radius="0.0615"/>
       </geometry>
       <material name="color_wheel">
         <color rgba="0.0 0.0 0.0 1.0"/>
@@ -217,7 +217,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.07" radius="0.125"/>
+        <cylinder length="0.068" radius="0.0615"/>
       </geometry>
     </collision>
     <inertial>
@@ -229,7 +229,7 @@
     <preserveFixedJoint>true</preserveFixedJoint>
     <parent link="robot_base_link"/>
     <child link="rear_left_wheel_link"/>
-    <origin rpy="0 0 0" xyz="-0.05425 0.141 0"/>
+    <origin rpy="1.5708 0 0" xyz="-0.0955 0.141 0"/>
     <implicitSpringDamper>1</implicitSpringDamper>
   </joint>
   <link name="rear_right_wheel_link">
@@ -238,7 +238,7 @@
       <geometry>
         <!-- <mesh filename="file:///workspaces/2022-TUB-MARS-autopilot/src/mars_robot/meshes/Wheel_four.stl" 
                         scale="0.001 0.001 0.001"/> -->
-        <box size="0.128 0.084 0.061"/>
+        <cylinder length="0.068" radius="0.0615"/>
       </geometry>
       <material name="color_wheel">
         <color rgba="0.0 0.0 0.0 1.0"/>
@@ -247,7 +247,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.07" radius="0.125"/>
+        <cylinder length="0.068" radius="0.0615"/>
       </geometry>
     </collision>
     <inertial>
@@ -259,7 +259,7 @@
     <preserveFixedJoint>true</preserveFixedJoint>
     <parent link="robot_base_link"/>
     <child link="rear_right_wheel_link"/>
-    <origin rpy="0 0 0" xyz="-0.05425 -0.141 0"/>
+    <origin rpy="1.5708 0 0" xyz="-0.0955 -0.141 0"/>
     <implicitSpringDamper>1</implicitSpringDamper>
   </joint>
   <!--IMU-->
@@ -280,16 +280,16 @@
   <link name="camera_link">
     <visual>
       <geometry>
-        <box size="0.128 0.084 0.061"/>
+        <box size="0.03 0.11 0.035"/>
       </geometry>
       <material name="color_cam">
-        <color rgba="0.0 0.0 0.0 1.0"/>
+        <color rgba="1.0 0.65 0.0 1.0"/>
       </material>
     </visual>
   </link>
   <joint name="camera_joint" type="fixed">
     <preserveFixedJoint>true</preserveFixedJoint>
-    <origin rpy="0 0 0" xyz="0.0 0 0.2045"/>
+    <origin rpy="0 0 0" xyz="0.1335 0 0.2045"/>
     <parent link="robot_base_link"/>
     <child link="camera_link"/>
   </joint>
