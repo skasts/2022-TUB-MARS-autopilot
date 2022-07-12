@@ -1,17 +1,17 @@
 controller_manager:
   ros__parameters:
-    update_rate: 20  # Hz
+    update_rate: 40  # Hz
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    diffbot_base_controller:
+    base_controller:
       type: diff_drive_controller/DiffDriveController
 
-diffbot_base_controller:
+base_controller:
   ros__parameters:
-    left_wheel_names: ["front_left_wheel_joint"]
-    right_wheel_names: ["front_right_wheel_joint"]
+    left_wheel_names: ["front_left_wheel_joint","rear_left_wheel_joint"]
+    right_wheel_names: ["front_right_wheel_joint","rear_right_wheel_joint"]
 
     wheel_separation: 0.2822
     #wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
@@ -21,9 +21,9 @@ diffbot_base_controller:
     left_wheel_radius_multiplier: 1.0
     right_wheel_radius_multiplier: 1.0
 
-    publish_rate: 10.0
+    publish_rate: 20.0
     odom_frame_id: odom
-    base_frame_id: robot_base_link
+    base_frame_id: mars_robot_footprint
     pose_covariance_diagonal : [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
     twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
 
@@ -33,7 +33,7 @@ diffbot_base_controller:
     cmd_vel_timeout: 0.5
     #publish_limited_velocity: true
     use_stamped_vel: false
-    #velocity_rolling_window_size: 10
+    velocity_rolling_window_size: 5 # Was 10
 
     # Preserve turning radius when limiting speed/acceleration/jerk
     preserve_turning_radius: true
