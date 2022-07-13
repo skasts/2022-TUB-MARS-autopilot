@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
-  <name>speed_passer</name>
-  <version>0.9.4</version>
-  <description>Examples of minimal subscribers using rclpy.</description>
-  <maintainer email="sloretz@openrobotics.org">Shane Loretz</maintainer>
-  <license>Apache License 2.0</license>
+  <name>arduino_interface</name>
+  <version>0.0.1</version>
+  <description>Implements a hardware interface for an Arduino.</description>
+  <maintainer email="test@test.de">Alicia S.</maintainer>
+  <license>todo</license>
 
   <exec_depend>rclpy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
