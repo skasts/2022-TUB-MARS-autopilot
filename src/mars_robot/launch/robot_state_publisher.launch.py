@@ -9,8 +9,8 @@ def generate_launch_description():
     # Create launch description object
     ld = launch.LaunchDescription()
 
-    use_sim_time = LaunchConfiguration("use_sim_time", default="true")
-    declare_use_sim_time_cmd = DeclareLaunchArgument(name="use_sim_time", default_value="True")
+    use_sim_time = LaunchConfiguration("use_sim_time", default="False")
+    declare_use_sim_time_cmd = DeclareLaunchArgument(name="use_sim_time", default_value="False")
     
     # Get URDF via xacro
     robot_description_content = Command(

@@ -43,10 +43,10 @@
         </joint>
 </ros2_control>
 
-<!-- This first link, "world" is empty-->
-<link name="mars_robot_footprint"></link>        
+<!-- This first link, "base_footprint" is empty-->
+<!-- <link name="base_footprint"></link>         -->
 
-<link name="robot_base_link">
+<link name="base_link">
         <visual>
                 <origin xyz="0 0 0.1115" rpy="0.0 0.0 0.0"/>
                 <geometry>
@@ -74,13 +74,12 @@
         </collision>
 </link>
 
-<!-- Fixed joint from "world" to "base"-->
-<joint name="base_joint" type="fixed">
-        <preserveFixedJoint>true</preserveFixedJoint>
-        <origin xyz="0.0 0 0.0615" rpy="0 0 0"/>    
-        <parent link="mars_robot_footprint"/>
-        <child link="robot_base_link"/>            
-</joint>
+<!-- Fixed joint from "base_footprint" to "base"-->
+<!-- <joint name="base_joint" type="fixed">
+        <origin xyz="0.0 0.0 0.0615" rpy="0 0 0"/>    
+        <parent link="base_footprint"/>
+        <child link="base_link"/>            
+</joint> -->
 
 <link name="front_left_wheel_link">
         <visual>
@@ -110,11 +109,10 @@
 </link>
 
 <joint name="front_left_wheel_joint" type="continuous">
-        <preserveFixedJoint>true</preserveFixedJoint>
-        <parent link="robot_base_link"/>
+        <parent link="base_link"/>
         <child link="front_left_wheel_link"/>
         <origin rpy="1.5708 0 0" xyz="0.0955 0.141 0"/>
-        <implicitSpringDamper>1</implicitSpringDamper>
+        <!-- <implicitSpringDamper>1</implicitSpringDamper> -->
 </joint>
 
 
@@ -146,8 +144,7 @@
 </link>
  
 <joint name="front_right_wheel_joint" type="continuous">
-        <preserveFixedJoint>true</preserveFixedJoint>
-        <parent link="robot_base_link"/>
+        <parent link="base_link"/>
         <child link="front_right_wheel_link"/>
         <origin rpy="1.5708 0 0" xyz="0.0955 -0.141 0"/>
         <implicitSpringDamper>1</implicitSpringDamper>
@@ -181,8 +178,7 @@
 </link>
 
 <joint name="rear_left_wheel_joint" type="continuous">
-        <preserveFixedJoint>true</preserveFixedJoint>
-        <parent link="robot_base_link"/>
+        <parent link="base_link"/>
         <child link="rear_left_wheel_link"/>
         <origin rpy="1.5708 0 0" xyz="-0.0955 0.141 0"/>
         <implicitSpringDamper>1</implicitSpringDamper>
@@ -217,8 +213,7 @@
 </link>
 
 <joint name="rear_right_wheel_joint" type="continuous">
-        <preserveFixedJoint>true</preserveFixedJoint>
-        <parent link="robot_base_link"/>
+        <parent link="base_link"/>
         <child link="rear_right_wheel_link"/>
         <origin rpy="1.5708 0 0" xyz="-0.0955 -0.141 0"/>
         <implicitSpringDamper>1</implicitSpringDamper>
@@ -234,8 +229,7 @@
 </link>
  
 <joint name="imu_joint" type="fixed">
-        <preserveFixedJoint>true</preserveFixedJoint>
-        <parent link="robot_base_link" />
+        <parent link="base_link" />
         <child link="imu_link" />
         <origin rpy="0 0 0" xyz="0.0495 0.01 0.0665" />
 </joint>
@@ -253,16 +247,14 @@
 </link>
  
 <joint name="camera_joint" type="fixed">
-        <preserveFixedJoint>true</preserveFixedJoint>
         <origin rpy="0 0 0" xyz="0.1335 0 0.2045" />
-        <parent link="robot_base_link" />
+        <parent link="base_link" />
         <child link="camera_link" />
 </joint>
 
 <!-- generate an optical frame http://www.ros.org/reps/rep-0103.html#suffix-frames
       so that ros and opencv can operate on the camera frame correctly -->
 <joint name="camera_optical_joint" type="fixed">
-        <preserveFixedJoint>true</preserveFixedJoint>
         <!-- these values have to be these values otherwise the gazebo camera image
         won't be aligned properly with the frame it is supposedly originating from -->
         <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>

@@ -1,0 +1,11 @@
+/opencv_cam:
+  ros__parameters:
+    # width: 1920
+    # height: 1080
+    width: 640
+    height: 480
+    file: False
+    filename: 'video_maisfeld.mp4'
+    # camera_info_path: 'camera_info_1920x1080.ini'
+    camera_info_path: 'camera_info_640x480.ini'
+    camera_frame_id: 'camera_link'

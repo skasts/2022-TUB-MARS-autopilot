@@ -1,0 +1,44 @@
+covariance_adder_node:
+  ros__parameters:
+    pose_covariance_diagonal: [0.01, 0.01, 0.01, 0.01, 0.01, 0.1]
+
+# Params for orb_slam2 nodes:
+orb_slam2_mono:
+  ros__parameters:
+    use_sim_time: False
+
+    # ros_ign_image publishes images RELIABLE
+    subscribe_best_effort: True
+
+    publish_pointcloud: True
+    publish_pose: True
+    publish_tf: false
+    localize_only: False
+
+    pointcloud_frame_id: map  # Map frame to use down-facing cameras
+    camera_frame_id: camera_link
+    min_num_kf_in_map: 5
+    min_observations_for_ros_map: 1
+
+    # static parameters
+    map_file: "map.bin"
+    load_map: False
+
+    #ORB parameters
+    ORBextractor/nFeatures: 1200
+    ORBextractor/scaleFactor: 1.2
+    ORBextractor/nLevels: 8
+    ORBextractor/iniThFAST: 20
+    ORBextractor/minThFAST: 7
+
+    load_calibration_from_cam: True # was false
+
+    camera_fps: 30
+    # Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+    # TODO: Farbe richtig?!
+    camera_rgb_encoding: True
+
+    # See https://github.com/raulmur/ORB_SLAM2/issues/89 for the author's explanation of these:
+    # ThDepth: 40.0
+    # depth_map_factor: 1.0
+    # camera_baseline: 171.0  # Right camera info p[3], flip sign # TODO: Einstellen
