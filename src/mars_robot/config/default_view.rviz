@@ -69,17 +69,59 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /robot_description
-      Enabled: false
+      Enabled: true
       Links:
         All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_link_optical:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        front_left_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rear_left_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: RobotModel
       TF Prefix: ""
       Update Interval: 0
-      Value: false
+      Value: true
       Visual Enabled: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
@@ -119,6 +161,8 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        base_footprint:
+          Value: true
         base_link:
           Value: true
         camera_link:
@@ -147,20 +191,21 @@ Visualization Manager:
       Tree:
         map:
           odom:
-            base_link:
-              camera_link:
-                camera_link_optical:
+            base_footprint:
+              base_link:
+                camera_link:
+                  camera_link_optical:
+                    {}
+                front_left_wheel_link:
                   {}
-              front_left_wheel_link:
-                {}
-              front_right_wheel_link:
-                {}
-              imu_link:
-                {}
-              rear_left_wheel_link:
-                {}
-              rear_right_wheel_link:
-                {}
+                front_right_wheel_link:
+                  {}
+                imu_link:
+                  {}
+                rear_left_wheel_link:
+                  {}
+                rear_right_wheel_link:
+                  {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -240,10 +285,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7547961473464966
+      Pitch: 0.11979614198207855
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.302248954772949
+      Yaw: 3.0522501468658447
     Saved: ~
 Window Geometry:
   Displays:

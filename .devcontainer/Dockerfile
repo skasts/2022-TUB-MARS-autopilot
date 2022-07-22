@@ -1,7 +1,7 @@
 # Default
-FROM althack/ros2:foxy-gazebo AS althack
+# FROM althack/ros2:foxy-gazebo AS althack
 # If you have a nvidia GPU with Cuda installed
-# FROM althack/ros2:foxy-gazebo-nvidia AS althack 
+FROM althack/ros2:foxy-gazebo-nvidia AS althack 
 
 # Install additional packages
 ENV DEBIAN_FRONTEND=noninteractive
@@ -73,6 +73,14 @@ RUN apt-get update \
    libgstreamer1.0-dev \
    # ORB-Slam3 deps:
    libpython2.7-dev \
+   # orb_slam2_ros reqs:
+   ros-foxy-image-common \
+   # opencv_cam reqs:
+   ros-foxy-image-pipeline \
+   # robot_localization reqs:
+   libgeographic-dev \
+   ros-foxy-diagnostic-updater \
+   ros-foxy-geographic-msgs \
    # Clean up
    && apt-get autoremove -y \
    && apt-get clean -y \
@@ -81,34 +89,34 @@ ENV DEBIAN_FRONTEND=dialog
 
 FROM althack AS w_requirements
 
-# Build OpenCV
-RUN git clone https://github.com/opencv/opencv.git && \
-    cd opencv && \
-    # git checkout 4.4.0 && \
-    mkdir build && cd build && \
-    cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D INSTALL_C_EXAMPLES=OFF \
-    -D INSTALL_PYTHON_EXAMPLES=OFF \
-    -D BUILD_PERF_TESTS=OFF \
-    -D BUILD_DOCS=OFF \
-    -D BUILD_EXAMPLES=OFF .. && \
-    make -j8 && make install && \
-    cd / && rm -rf opencv && \
-    ldconfig
+# # Build OpenCV
+# RUN git clone https://github.com/opencv/opencv.git && \
+#     cd opencv && \
+#     # git checkout 4.4.0 && \
+#     mkdir build && cd build && \
+#     cmake -D CMAKE_BUILD_TYPE=RELEASE \
+#     -D CMAKE_INSTALL_PREFIX=/usr/local \
+#     -D INSTALL_C_EXAMPLES=OFF \
+#     -D INSTALL_PYTHON_EXAMPLES=OFF \
+#     -D BUILD_PERF_TESTS=OFF \
+#     -D BUILD_DOCS=OFF \
+#     -D BUILD_EXAMPLES=OFF .. && \
+#     make -j8 && make install && \
+#     cd / && rm -rf opencv && \
+#     ldconfig
 
-# Build Pangolin
-RUN git clone https://github.com/stevenlovegrove/Pangolin && \
-    cd Pangolin && mkdir build && cd build && \
-    cmake .. && make -j$nproc && make install && \
-    cd / && rm -rf Pangolin && \
-    ldconfig
+# # Build Pangolin
+# RUN git clone https://github.com/stevenlovegrove/Pangolin && \
+#     cd Pangolin && mkdir build && cd build && \
+#     cmake .. && make -j$nproc && make install && \
+#     cd / && rm -rf Pangolin && \
+#     ldconfig
 
-# Build ORB-Slam3
-RUN git clone https://github.com/UZ-SLAMLab/ORB_SLAM3 && \
-    cd ORB_SLAM3 && \
-    sed -i 's/++11/++14/g' CMakeLists.txt && \
-    ./build.sh
+# # Build ORB-Slam3
+# RUN git clone https://github.com/UZ-SLAMLab/ORB_SLAM3 && \
+#     cd ORB_SLAM3 && \
+#     sed -i 's/++11/++14/g' CMakeLists.txt && \
+#     ./build.sh
 
 # Source Gazebo's setup file
 RUN echo "source /usr/share/gazebo/setup.sh" >> /home/ros/.bashrc
@@ -117,6 +125,9 @@ ENV DEBIAN_FRONTEND=
 # Set up auto-source of workspace for ros user
 ARG WORKSPACE
 RUN echo "if [ -f ${WORKSPACE}/install/setup.bash ]; then source ${WORKSPACE}/install/setup.bash; fi" >> /home/ros/.bashrc
+
+ARG WORKSPACE
+RUN echo "export ROS_DOMAIN_ID=1" >> /home/ros/.bashrc
 
 # # Install realsense2 driver
 # RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE \
@@ -132,3 +143,7 @@ RUN echo "if [ -f ${WORKSPACE}/install/setup.bash ]; then source ${WORKSPACE}/in
 #     && apt-get clean -y \
 #     && rm -rf /var/lib/apt/lists/*
 # ENV DEBIAN_FRONTEND=dialog
+
+# git clone git@github.com:clydemcqueen/orb_slam_2_ros.git
+# orb_slam2_ros reqs:
+# ros-foxy-image-common

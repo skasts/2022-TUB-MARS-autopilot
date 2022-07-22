@@ -1,6 +1,7 @@
 covariance_adder_node:
   ros__parameters:
-    pose_covariance_diagonal: [0.01, 0.01, 0.01, 0.01, 0.01, 0.1]
+    # (x, y, z, rotation about X axis, rotation about Y axis, rotation about Z axis)
+    pose_covariance_diagonal: [0.0001, 0.0001, 0.0001, 1.0, 1.0, 0.01]
 
 # Params for orb_slam2 nodes:
 orb_slam2_mono:

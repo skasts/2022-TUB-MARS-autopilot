@@ -44,7 +44,7 @@
 </ros2_control>
 
 <!-- This first link, "base_footprint" is empty-->
-<!-- <link name="base_footprint"></link>         -->
+<link name="base_footprint"></link>        
 
 <link name="base_link">
         <visual>
@@ -75,11 +75,11 @@
 </link>
 
 <!-- Fixed joint from "base_footprint" to "base"-->
-<!-- <joint name="base_joint" type="fixed">
+<joint name="base_joint" type="fixed">
         <origin xyz="0.0 0.0 0.0615" rpy="0 0 0"/>    
         <parent link="base_footprint"/>
         <child link="base_link"/>            
-</joint> -->
+</joint>
 
 <link name="front_left_wheel_link">
         <visual>
