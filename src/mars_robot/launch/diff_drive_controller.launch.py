@@ -1,3 +1,7 @@
+# This starts a robot state publisher for the MARS robot (using the describing .xacro), a controller
+# with a differential drive plugin (cmd_vel -> speeds left and right) and a joint state broadcaster
+# plugin (transformations for wheels according to the set speed)
+
 import os
 import launch
 

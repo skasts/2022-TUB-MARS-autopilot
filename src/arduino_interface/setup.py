@@ -15,12 +15,11 @@ setup(
     zip_safe=True,
     maintainer='Alicia S.',
     maintainer_email='todo@todo.todo',
-    description='TODO: Package description',
+    description='Implements a hardware interface for an Arduino that passes wheel velocities.',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'publisher = arduino_interface.publisher:main',
             'arduino_interface = arduino_interface.arduino_interface:main',
         ],
     },

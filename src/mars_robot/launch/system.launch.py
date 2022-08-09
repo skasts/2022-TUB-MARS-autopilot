@@ -1,3 +1,6 @@
+# This launch file starts all current parts of the system: The diff_drive_controller, slam, ekf and 
+# RViz. This is done by including the individual launch files from this folder.
+
 import os
 import launch
 

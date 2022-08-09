@@ -3,8 +3,8 @@
 <package format="2">
   <name>covariance_adder</name>
   <version>0.0.1</version>
-  <description>Implements a hardware interface for an Arduino.</description>
-  <maintainer email="test@test.de">Simon Kast</maintainer>
+  <description>Adds covariance information to a PoseStamped msg.</description>
+  <maintainer email="todo@todo.todo">Simon Kast</maintainer>
   <license>todo</license>
 
   <exec_depend>rclpy</exec_depend>

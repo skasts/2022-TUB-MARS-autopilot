@@ -20,7 +20,6 @@ endif()
 ################################################################################
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
-find_package(gazebo_ros_pkgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -42,7 +41,7 @@ endif()
 # Build
 ################################################################################
 set(dependencies
-  "gazebo_ros_pkgs"
+  
 )
 
 ################################################################################
@@ -55,5 +54,5 @@ install(DIRECTORY launch meshes urdf config
 ################################################################################
 # Macro for ament package
 ################################################################################
-ament_export_dependencies(gazebo_ros_pkgs)
+# ament_export_dependencies()
 ament_package()

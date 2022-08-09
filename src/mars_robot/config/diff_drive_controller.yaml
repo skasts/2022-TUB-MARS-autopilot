@@ -13,7 +13,8 @@ base_controller:
     left_wheel_names: ["front_left_wheel_joint","rear_left_wheel_joint"]
     right_wheel_names: ["front_right_wheel_joint","rear_right_wheel_joint"]
 
-    wheel_separation: 0.2822
+    # wheel_separation: 0.2822
+    wheel_separation: 5.0
     #wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
     wheel_radius: 0.0615
 
@@ -33,7 +34,7 @@ base_controller:
     cmd_vel_timeout: 0.5
     #publish_limited_velocity: true
     use_stamped_vel: false
-    velocity_rolling_window_size: 5 # Was 10
+    velocity_rolling_window_size: 2 # Was 10
 
     # Preserve turning radius when limiting speed/acceleration/jerk
     preserve_turning_radius: true

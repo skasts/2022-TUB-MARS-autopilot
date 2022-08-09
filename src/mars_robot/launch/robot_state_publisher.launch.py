@@ -1,3 +1,5 @@
+# This starts a robot state publisher for the MARS robot (using the describing .xacro)
+
 import launch
 
 from launch.actions import DeclareLaunchArgument

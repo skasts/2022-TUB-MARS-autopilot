@@ -1,3 +1,5 @@
+# This spawns a robot entity of the MARS robot into a running Gazebo simulation
+
 import launch
 import math
 

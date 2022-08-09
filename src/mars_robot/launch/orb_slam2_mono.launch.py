@@ -1,3 +1,9 @@
+# This starts the Slam algorithm (ORB-Slam2), a OpenCV-ROS2 camera driver and the covariance adder
+# node. The camera driver is needed to get the camera images as ROS msgs, the covariance adder adds
+# covariance information to the pose estimate we get from the slam. The covariance information is 
+# needed by the kalman filter to be able to fuse the slam's pose estimate with the odom pose 
+# estimate from the drive plugin.
+
 import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
@@ -31,6 +37,7 @@ def generate_launch_description():
         parameters=[{
             "width": 640,
             "height": 480,
+            "fps": 30,
             "file": False,
             "filename": "video_maisfeld.mp4", # Only used when file set to true
             "camera_frame_id": "camera_link",

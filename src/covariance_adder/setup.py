@@ -13,9 +13,9 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='Alicia S.',
+    maintainer='Simon Kast',
     maintainer_email='todo@todo.todo',
-    description='TODO: Package description',
+    description='Adds covariance information to a PoseStamped msg',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={

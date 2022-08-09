@@ -3,8 +3,9 @@
 <package format="2">
   <name>arduino_interface</name>
   <version>0.0.1</version>
-  <description>Implements a hardware interface for an Arduino.</description>
-  <maintainer email="test@test.de">Alicia S.</maintainer>
+  <description>Implements a hardware interface for an Arduino that passes wheel velocities.</description>
+  <maintainer email="todo@todo.todo">Simon Kast.</maintainer>
+  <maintainer email="todo@todo.todo">Alicia S.</maintainer>
   <license>todo</license>
 
   <exec_depend>rclpy</exec_depend>

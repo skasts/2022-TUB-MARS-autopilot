@@ -4,8 +4,11 @@
   <name>mars_robot</name>
   <version>1.0.0</version>
   <description>Package with robot description for MARS rover</description>
-  <maintainer email="test@test.de">alicia</maintainer>
-  <license>tbd</license>
+  <maintainer email="todo@todo.todo">Simon Kast.</maintainer>
+  <maintainer email="todo@todo.todo">Alicia S.</maintainer>
+  <license>todo</license>
+
+  <!-- TODO: Here are many dependencies missing that the package actually has... -->
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <test_depend>ament_lint_auto</test_depend>
