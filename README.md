@@ -18,7 +18,7 @@ For a complete autopilot in a maize field we see following steps left open:
 
 ## Software Architecture
 
-<img src="doc/software\_architecture\_final.png" width="600"/> 
+<img src="doc/software_architecture_final.png" width="600"/> 
 
 ## Installation
 
