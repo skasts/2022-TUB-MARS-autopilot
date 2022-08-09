@@ -18,7 +18,9 @@ For a complete autopilot in a maize field we see following steps left open:
 
 ## Software Architecture
 
-<img src="doc/software_architecture_final.png" width="600"/> 
+The image shows the rough software architecutre of the repository. Most parts of the software are supposed to run on a computer (or Raspberry Pi). The computer is supposed to be connected to an Arduino via USB Serial connection. The module *Mission Logic* and an *IMU* as additional source of robot pose is left to do after this project. 
+
+<img src="doc/software_architecture_final.png"/> 
 
 ## Installation
 
@@ -196,3 +198,6 @@ If you want to commit and push to the repository, git in the container needs to 
 git config --global user.name "Simon Kast"
 git config --global user.email 57326251+skasts@users.noreply.github.com
 ```
+
+#### Configure Raspberry Pi to run this code
+The recommended way is to install Docker on the Raspberry Pi. This enables to use this code as on any normal computer. It also exploits the advantages of Docker that we do not need to worry about dependencies. To get Docker running on the Raspberry, you should install a 64-bit version of Raspbian (best case a headless version to save resources).
