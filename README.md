@@ -18,8 +18,7 @@ For a complete autopilot in a maize field we see following steps left open:
 
 ## Software Architecture
 
-<img src="doc/software\_architecture\_final.pdf" width="600"/> 
-<embed src="doc/software\_architecture\_final.pdf" type="application/pdf">
+<img src="doc/software\_architecture\_final.png" width="600"/> 
 
 ## Installation
 
@@ -45,7 +44,7 @@ cd ..
 
 ### Build and enter Docker image
 To build the Docker image there are two options. You could either use Docker from command line (cli) or, what is recommended for developing, build it using Visual Studio Code (VS Code) and then run and delevop things from there. 
-#### Docker from CLI (not recommended)
+#### 1) Docker from CLI (not recommended)
 Build the image. This can easily take more than 20 minutes, depending on your hardware and internet connection. 
 ```
 docker build -t mars:1.0 .devcontainer/
@@ -59,7 +58,7 @@ To attach a new terminal to a running container (i.e. to execute another process
 docker exec -it mars bash
 ```
 
-#### Docker with VS Code (recommended)
+#### 2) Docker with VS Code (recommended)
 You can also build the image and run a container using VS Code. The settings how to run the container are stored in *.devcontainer/devcontainer.json*. 
 ##### Prerequisites
 - have VS Code installed (`sudo apt update && sudo apt install code`)
