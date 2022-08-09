@@ -14,7 +14,19 @@ repositories:
     type: git
     url: https://github.com/FieldRobotEvent/virtual_maize_field.git
     version: ros2
-  slam_toolbox:
+  opencv_cam:
     type: git
-    url: https://github.com/SteveMacenski/slam_toolbox.git
+    url: https://github.com/clydemcqueen/opencv_cam.git
+    version: master
+  ros2_shared:
+    type: git
+    url: https://github.com/ptrmu/ros2_shared.git
+    version: master
+  orb_slam_2_ros:
+    type: git
+    url: https://github.com/appliedAI-Initiative/orb_slam_2_ros.git
+    version: ros2
+  robot_localization:
+    type: git
+    url: https://github.com/cra-ros-pkg/robot_localization.git
     version: foxy-devel
